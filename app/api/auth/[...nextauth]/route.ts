@@ -6,16 +6,22 @@ const handler = NextAuth({
         CredentialsProvider({
             name: "Email",
             credentials: {
-                username: {label: "email", type: "text", placeholder: "Email"},
-                password: {label: "password", type: "password", placeholder: "Password"},
+                username: {label: "Email", type: "text", placeholder: "Email"},
+                password: {label: "Password", type: "password", placeholder: "Password"},
             },
             async authorize(credentials: any){
+                console.log(credentials);
+                const username = credentials.username;
+                const password = credentials.password;
+
                 return {
-                    id: 'user1'
+                    id: 'user1',
+                    name: 'hairi'
                 }
             }
         })
-    ]
+    ],
+    secret: process.env.NEXTAUTH_SECRET
 })
 
 export const GET = handler;
